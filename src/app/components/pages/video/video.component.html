@@ -1,0 +1,64 @@
+<div *ngIf="videoExists; else videoDeleted">
+	<div *ngIf="userLogin" class="loginWindow">
+		<app-login></app-login>
+	</div>
+	<div *ngIf="!loading; else loadingVideo">
+		<video
+			class="video-js vjs-theme-city"
+			controls
+			preload="auto"
+			data-setup="{}"
+		>
+			<source src="{{ videoUrl }}" type="video/mp4" />
+		</video>
+		<div class="row d-flex align-items-center">
+			<h2 class="col-6">{{ video.title }}</h2>
+			<div class="col-3 text-right">
+				<button
+					*ngIf="uploadedByCurrentUser"
+					class="btn btn-danger m-0"
+					(click)="deleteVideo()"
+				>
+					Delete Video
+				</button>
+			</div>
+			<div class="row col-3 text-right">
+				<button
+					class="col d-flex btn btn-success mx-1 align-items-center"
+					(click)="likeVideo()"
+				>
+					<p class="m-0 mr-2 p-0" style="font-size:16px;">
+						{{ videoLikes }}
+					</p>
+					<i style="font-size:18px;" class="material-icons mr-2"
+						>thumb_up</i
+					>
+					<p class="mb-0" style="font-size:12px;">Like</p>
+				</button>
+				<button
+					class="col d-flex btn btn-danger mx-1 align-items-center"
+					(click)="dislikeVideo()"
+				>
+					<p class="m-0 mr-2 p-0" style="font-size:16px;">
+						<!-- {{ videoDislikes }} -->
+						0
+					</p>
+					<i style="font-size:18px;" class="material-icons mr-2"
+						>thumb_down</i
+					>
+					<p class="mb-0" style="font-size:12px;">Dislike</p>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<ng-template #loadingVideo>
+	<p>Loading...</p>
+</ng-template>
+
+<ng-template #videoDeleted>
+	<p>This video has been deleted or the url is incorrect!</p>
+</ng-template>
+
+<ng-template #loginWindow> </ng-template>

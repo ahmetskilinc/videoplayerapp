@@ -1,0 +1,72 @@
+<div class="signup-form">
+	<form [formGroup]="userForm" (ngSubmit)="signup()">
+		<h2 class="text-center">Signup</h2>
+		<div class="form-group">
+			<input
+				type="text"
+				class="form-control"
+				placeholder="First name"
+				required="required"
+				formControlName="firstName"
+			/>
+			<div *ngIf="formErrors.firstName">
+				{{ formErrors.firstName }}
+			</div>
+		</div>
+		<div class="form-group">
+			<input
+				type="text"
+				class="form-control"
+				placeholder="Last name"
+				required="required"
+				formControlName="lastName"
+			/>
+			<div *ngIf="formErrors.lastName">
+				{{ formErrors.lastName }}
+			</div>
+		</div>
+		<div class="form-group">
+			<input
+				type="email"
+				class="form-control"
+				placeholder="Email"
+				required="required"
+				formControlName="email"
+			/>
+			<div *ngIf="formErrors.email">
+				{{ formErrors.email }}
+			</div>
+		</div>
+		<div class="form-group">
+			<input
+				type="password"
+				class="form-control"
+				placeholder="Password"
+				required="required"
+				formControlName="password"
+			/>
+		</div>
+		<div class="form-group">
+			<input
+				type="password"
+				class="form-control"
+				placeholder="Confirm password"
+				required="required"
+				formControlName="repeatPassword"
+			/>
+			<div *ngIf="formErrors.password">
+				{{ formErrors.password }}
+			</div>
+		</div>
+		<div class="form-group">
+			<button
+				type="submit"
+				[disabled]="!userForm.valid"
+				class="btn btn-primary btn-block"
+			>
+				Signup
+			</button>
+		</div>
+	</form>
+	<p class="text-center"><a routerLink="/login">Got an account?</a></p>
+</div>

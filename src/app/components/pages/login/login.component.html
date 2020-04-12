@@ -1,0 +1,40 @@
+<div class="login-form">
+	<form [formGroup]="userForm" (ngSubmit)="login()">
+		<h2 class="text-center">Log in</h2>
+		<div class="form-group">
+			<input
+				type="email"
+				class="form-control"
+				placeholder="Email"
+				required="required"
+				formControlName="email"
+			/>
+			<div *ngIf="formErrors.email">
+				{{ formErrors.email }}
+			</div>
+		</div>
+		<div class="form-group">
+			<input
+				type="password"
+				class="form-control"
+				placeholder="Password"
+				required="required"
+				formControlName="password"
+			/>
+			<div *ngIf="formErrors.password">
+				{{ formErrors.password }}
+			</div>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary btn-block">
+				Log in
+			</button>
+		</div>
+		<div class="clearfix">
+			<p class="text-center">
+				<a routerLink="/forgotpassword">Forgot Password?</a>
+			</p>
+		</div>
+	</form>
+	<p class="text-center"><a routerLink="/signup">Create an account</a></p>
+</div>
