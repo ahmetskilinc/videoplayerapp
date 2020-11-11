@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 
 import { Observable } from "rxjs";
 import { Router } from "@angular/router";
@@ -24,7 +24,7 @@ export class AuthService {
 	}
 
 	signup(credentials: EmailPasswordCredentials) {
-		this.firebaseAuth.auth
+		this.firebaseAuth
 			.createUserWithEmailAndPassword(
 				credentials.email,
 				credentials.password
@@ -53,7 +53,7 @@ export class AuthService {
 	}
 
 	login(credentials: EmailPasswordCredentials) {
-		this.firebaseAuth.auth
+		this.firebaseAuth
 			.signInWithEmailAndPassword(credentials.email, credentials.password)
 			.then((user) => {
 				console.table(user);
@@ -65,7 +65,7 @@ export class AuthService {
 	}
 
 	logout() {
-		this.firebaseAuth.auth.signOut().then((data) => {
+		this.firebaseAuth.signOut().then((data) => {
 			this.router.navigate(["/"]);
 		});
 	}
